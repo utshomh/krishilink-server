@@ -53,7 +53,7 @@ npm run dev
 Create a `.env` file in the root directory and add:
 
 ```
-PORT=5000
+PORT=8000
 MONGODB_URI=your_mongodb_connection_string
 FIREBASE_SERVICE_ACCOUNT=your_service_account_json
 ```

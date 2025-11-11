@@ -23,7 +23,7 @@
 - ✅ Use middleware: `cors`, `express.json()`  
 - ✅ Create GitHub repo `krishilink-server`  
 - 🕐 Make ≥8 meaningful commits  
-- 🚀 Deploy on Vercel  
+- ✅ Deploy on Vercel  
 
 ---
 
@@ -35,11 +35,11 @@
 
 ### Crop Routes  
 
-- 🚀 `GET /crops` → Fetch all crops  
-- 🚀 `GET /crops/:id` → Get specific crop  
-- 🚀 `POST /crops` → Add new crop  
-- 🚀 `PATCH /crops/:id` → Update crop (owner only)  
-- 🚀 `DELETE /crops/:id` → Delete crop (owner only)  
+- ✅ `GET /crops` → Fetch all crops  
+- ✅ `GET /crops/:id` → Get specific crop  
+- ✅ `POST /crops` → Add new crop  
+- 🕐 `PATCH /crops/:id` → Update crop (owner only)  
+- 🕐 `DELETE /crops/:id` → Delete crop (owner only)  
 
 ### Interest Routes  
 
