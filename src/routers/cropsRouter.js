@@ -22,9 +22,13 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (_req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const crops = await Crop.find();
+    const { email, limit } = req.query;
+    const query = email ? { ownerEmail: email } : {};
+    const crops = limit
+      ? await Crop.find(query).limit(limit)
+      : await Crop.find(query);
     res.json(crops);
   } catch (error) {
     res.status(500).json({ message: error });

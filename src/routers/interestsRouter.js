@@ -24,7 +24,11 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (_req, res) => {
   try {
-    const interests = await Interest.find();
+    const { email, limit } = req.query;
+    const query = email ? { ownerEmail: email } : {};
+    const interests = limit
+      ? await Interest.find(query).limit(limit)
+      : await Interest.find(query);
     res.json(interests);
   } catch (error) {
     res.status(500).json({ message: error });
