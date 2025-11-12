@@ -43,10 +43,10 @@
 
 ### Interest Routes  
 
-- 🚀 `POST /interests` → Create interest  
+- ✅ `POST /interests` → Create interest  
 - 🚀 `GET /interests?buyer=email` → Get buyer interests  
 - 🚀 `GET /interests?owner=email` → Get received interests  
-- 🚀 `PATCH /interests/:id` → Update status (accept/reject)  
+- ✅ `PATCH /interests/:id` → Update status (accept/reject)  
 
 ---
 

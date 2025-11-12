@@ -1,13 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 
+import { PORT } from "./environment.js";
 import { connectDB } from "./db.js";
-import cropsRouter from "./routes/cropsRoute.js";
+import cropsRouter from "./routers/cropsRouter.js";
+import interestsRouter from "./routers/interestsRouter.js";
 
-dotenv.config();
-
-const port = process.env.PORT;
 const app = express();
 
 // Connect to DB
@@ -24,6 +22,7 @@ app.get("/", (_req, res) => {
 
 // All Routes
 app.use("/crops", cropsRouter);
+app.use("/interests", interestsRouter);
 
 // Start Server
-app.listen(port, () => console.log(`[server] running at port: ${port}`));
+app.listen(PORT, () => console.log(`[server] running at port: ${PORT}`));
