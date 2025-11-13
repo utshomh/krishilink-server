@@ -65,7 +65,7 @@ npm run dev
 ## 📡 Deployment
 
 Deployed on **Vercel**:  
-➡️ [https://krishilink-server.vercel.app](https://krishilink-server.vercel.app)
+➡️ [https://krishilink.vercel.app](https://krishilink.vercel.app)
 
 ---
 

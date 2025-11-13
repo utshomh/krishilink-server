@@ -6,7 +6,7 @@ const interestSchema = new Schema(
     userEmail: { type: String, required: true },
     userName: { type: String, required: true },
     quantity: { type: Number, required: true },
-    message: { type: String },
+    message: { type: String, required: true },
     status: {
       type: String,
       enum: ["pending", "approved", "rejected"],

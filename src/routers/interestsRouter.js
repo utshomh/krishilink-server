@@ -57,4 +57,18 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const interest = await Interest.findByIdAndDelete(id);
+    if (interest) {
+      res.json(interest);
+    } else {
+      res.status(404).json({ message: "Interest not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+});
+
 export default router;
