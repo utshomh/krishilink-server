@@ -24,9 +24,14 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const { email } = req.query;
-    const query = email ? { ownerEmail: email } : {};
+    const { email, cropId } = req.query;
+
+    const query = {};
+    if (email) query.userEmail = email;
+    if (cropId) query.cropId = cropId;
+
     const interests = await Interest.find(query).sort({ createdAt: -1 });
+
     res.json(interests);
   } catch (error) {
     res.status(500).json({ message: "Server error", error });

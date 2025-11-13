@@ -71,7 +71,8 @@ router.delete("/:id", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const crop = await Crop.findOne({ _id: id }).populate("interests");
+    const crop = await Crop.findOne({ _id: id });
+    console.log(crop);
     if (crop) {
       res.json(crop);
     } else {

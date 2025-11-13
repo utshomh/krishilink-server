@@ -11,8 +11,6 @@ const cropSchema = new Schema(
     location: { type: String, required: true },
     image: { type: String, required: true },
 
-    interests: [{ type: Schema.Types.ObjectId, ref: "Interest" }],
-
     ownerEmail: { type: String, required: true },
     ownerName: { type: String, required: true },
   },
