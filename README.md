@@ -35,30 +35,13 @@ This repository contains the **Node.js + Express backend** and MongoDB connectio
 ## ⚙️ Installation
 
 ```bash
-# Clone the repo
 git clone https://github.com/mahadyhassanutsho/krishilink-server.git
 cd krishilink-server
 
-# Install dependencies
-npm install
+pnpm install
 
-# Run locally
-npm run dev
+pnpm run dev
 ```
-
----
-
-## 🌾 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| GET | `/crops` | Get all crops |
-| GET | `/crops/:id` | Get single crop |
-| POST | `/crops` | Add new crop |
-| PATCH | `/crops/:id` | Update crop |
-| DELETE | `/crops/:id` | Delete crop |
-| POST | `/interests` | Create interest |
-| GET | `/interests` | Get user interests |
 
 ---
 
@@ -78,5 +61,5 @@ Deployed on **Vercel**:
 
 ## 👨‍💻 Author
 
-Developed by ***Utsho MH***
+Developed by Utsho MH
 © 2025 KrishiLink
