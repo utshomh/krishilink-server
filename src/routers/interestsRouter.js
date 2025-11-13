@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (_req, res) => {
+router.get("/", async (req, res) => {
   try {
     const { email, limit } = req.query;
     const query = email ? { ownerEmail: email } : {};
@@ -31,7 +31,7 @@ router.get("/", async (_req, res) => {
       : await Interest.find(query);
     res.json(interests);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: "Server error", error });
   }
 });
 
