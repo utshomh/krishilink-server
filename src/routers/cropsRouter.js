@@ -27,8 +27,8 @@ router.get("/", async (req, res) => {
     const { email, limit } = req.query;
     const query = email ? { ownerEmail: email } : {};
     const crops = limit
-      ? await Crop.find(query).limit(limit)
-      : await Crop.find(query);
+      ? await Crop.find(query).sort({ createdAt: -1 }).limit(limit)
+      : await Crop.find(query).sort({ createdAt: -1 });
     res.json(crops);
   } catch (error) {
     res.status(500).json({ message: error });
@@ -71,7 +71,7 @@ router.delete("/:id", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const crop = await Crop.findOne({ _id: id });
+    const crop = await Crop.findOne({ _id: id }).populate("interests");
     if (crop) {
       res.json(crop);
     } else {

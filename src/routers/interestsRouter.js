@@ -24,11 +24,9 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const { email, limit } = req.query;
+    const { email } = req.query;
     const query = email ? { ownerEmail: email } : {};
-    const interests = limit
-      ? await Interest.find(query).limit(limit)
-      : await Interest.find(query);
+    const interests = await Interest.find(query).sort({ createdAt: -1 });
     res.json(interests);
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
@@ -50,34 +48,6 @@ router.patch("/:id", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Server error", error });
-  }
-});
-
-router.delete("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const interest = await Interest.findByIdAndDelete(id);
-    if (interest) {
-      res.json(interest);
-    } else {
-      res.status(404).json({ message: "Interest not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ message: "Server error", error });
-  }
-});
-
-router.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const interest = await Interest.findOne({ _id: id });
-    if (interest) {
-      res.json(interest);
-    } else {
-      res.status(404).json({ message: "Interest not found" });
-    }
-  } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
 });
