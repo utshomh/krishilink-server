@@ -5,6 +5,7 @@ import { PORT } from "./environment.js";
 import { connectDB } from "./db.js";
 import cropsRouter from "./routers/cropsRouter.js";
 import interestsRouter from "./routers/interestsRouter.js";
+import statsRouter from "./routers/statsRouter.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.get("/", (_req, res) => {
 // All Routes
 app.use("/crops", cropsRouter);
 app.use("/interests", interestsRouter);
+app.use("/stats", statsRouter);
 
 // Start Server
 app.listen(PORT, () => console.log(`[server] running at port: ${PORT}`));
