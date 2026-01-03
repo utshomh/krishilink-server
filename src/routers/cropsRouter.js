@@ -24,14 +24,38 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const { email, limit } = req.query;
-    const query = email ? { ownerEmail: email } : {};
-    const crops = limit
-      ? await Crop.find(query).sort({ createdAt: -1 }).limit(limit)
-      : await Crop.find(query).sort({ createdAt: -1 });
-    res.json(crops);
+    const { email, limit, sort, order, search, page, type } = req.query;
+    const query = {};
+
+    if (email) query.ownerEmail = email;
+    if (search) query.name = { $regex: search, $options: "i" };
+    if (type) query.type = { $regex: `^${type}$`, $options: "i" };
+
+    let sortField = sort || "createdAt";
+
+    if (sortField === "cropName") sortField = "name";
+
+    const sortOrder = order === "asc" ? 1 : -1;
+    const itemsPerPage = parseInt(limit) || 8;
+    const currentPage = parseInt(page) || 1;
+    const skip = (currentPage - 1) * itemsPerPage;
+
+    const crops = await Crop.find(query)
+      .sort({ [sortField]: sortOrder })
+      .collation({ locale: "en", strength: 2 })
+      .skip(skip)
+      .limit(itemsPerPage);
+
+    const totalCrops = await Crop.countDocuments(query);
+
+    res.json({
+      crops,
+      totalCrops,
+      totalPages: Math.ceil(totalCrops / itemsPerPage),
+      currentPage,
+    });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message || error });
   }
 });
 
